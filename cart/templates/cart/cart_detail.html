@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Корзина — TopTechShop{% endblock %}
+
+{% block content %}
+<div class="site-section" id="section-cart">
+  <div class="container">
+    <h2 class="text-primary mb-4">Корзина</h2>
+    <div class="p-4 bg-white">
+      <p>SaaS UI‑kit 2026 — ₸ 12 000</p>
+      <div class="d-flex align-items-center mb-2">
+        <button class="btn btn-sm" data-qty-btn data-target="#qty1" data-delta="-1">-</button>
+        <input id="qty1" value="1" class="form-control mx-2" style="width:80px;">
+        <button class="btn btn-sm" data-qty-btn data-target="#qty1" data-delta="1">+</button>
+      </div>
+      <p>Figma Tokens Pack — ₸ 6 000</p>
+      <a href="{% url 'orders:checkout' %}" class="btn btn-primary py-2 px-4 text-white">Оформить заказ</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

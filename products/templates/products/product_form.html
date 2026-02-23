@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }} — TopTechShop{% endblock %}
+
+{% block styles %}
+<style>
+  .product-shell {
+    display: flex;
+    justify-content: center;
+  }
+  .product-panel {
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 32px;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+    width: min(760px, 100%);
+  }
+  .product-panel h3 {
+    font-size: 28px;
+    margin-bottom: 6px;
+  }
+  .product-panel p {
+    color: #64748b;
+    margin-bottom: 18px;
+  }
+  .product-form {
+    display: grid;
+    gap: 14px;
+  }
+  .product-field {
+    display: grid;
+    gap: 6px;
+  }
+  .product-field label {
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #64748b;
+  }
+  .product-form input,
+  .product-form textarea,
+  .product-form select {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .product-form textarea {
+    min-height: 140px;
+    resize: vertical;
+  }
+  .product-form input:focus,
+  .product-form textarea:focus,
+  .product-form select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    background: #ffffff;
+  }
+  .product-errors {
+    color: #dc2626;
+    font-size: 12px;
+  }
+  .product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .product-note {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="site-section">
+  <div class="container">
+    <div class="product-shell">
+      <div class="product-panel" style="margin-top: 40px;">
+        <h3>{{ title }}</h3>
+        <p>Заполните карточку товара — мы оформим её аккуратно в каталоге.</p>
+        <form method="post" enctype="multipart/form-data" class="product-form">
+          {% csrf_token %}
+          {% if form.non_field_errors %}
+            <div class="product-errors">{{ form.non_field_errors }}</div>
+          {% endif %}
+          <div class="product-field">
+            <label for="{{ form.title.id_for_label }}">Title</label>
+            {{ form.title }}
+            <div class="product-errors">{{ form.title.errors }}</div>
+          </div>
+          <div class="product-field">
+            <label for="{{ form.description.id_for_label }}">Description</label>
+            {{ form.description }}
+            <div class="product-errors">{{ form.description.errors }}</div>
+          </div>
+          <div class="product-field">
+            <label for="{{ form.price.id_for_label }}">Price</label>
+            {{ form.price }}
+            <div class="product-errors">{{ form.price.errors }}</div>
+          </div>
+          <div class="product-field">
+            <label for="{{ form.status.id_for_label }}">Status</label>
+            {{ form.status }}
+            <div class="product-errors">{{ form.status.errors }}</div>
+          </div>
+          <div class="product-field">
+            <label for="{{ form.category.id_for_label }}">Category</label>
+            {{ form.category }}
+            <div class="product-errors">{{ form.category.errors }}</div>
+          </div>
+          <div class="product-field">
+            <label for="{{ form.tags.id_for_label }}">Tags</label>
+            {{ form.tags }}
+            <div class="product-errors">{{ form.tags.errors }}</div>
+          </div>
+          <div class="product-field">
+            <label for="{{ form.license.id_for_label }}">License</label>
+            {{ form.license }}
+            <div class="product-errors">{{ form.license.errors }}</div>
+          </div>
+          <div class="product-field">
+            <label for="{{ form.cover.id_for_label }}">Cover</label>
+            {{ form.cover }}
+            <div class="product-errors">{{ form.cover.errors }}</div>
+          </div>
+          <div class="product-footer">
+            <button class="btn btn-primary py-2 px-4 text-white" type="submit">Сохранить</button>
+            <div class="product-note">Поля со звёздочкой обязательны.</div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

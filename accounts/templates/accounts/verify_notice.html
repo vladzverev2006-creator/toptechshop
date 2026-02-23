@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Подтвердите email — TopTechShop{% endblock %}
+
+{% block content %}
+<div class="site-section" id="section-verify-notice">
+  <div class="container">
+    <div class="login-shell">
+      <div class="login-panel" style="margin-top: 40px;">
+        <h3>Подтвердите email</h3>
+        <p>Мы отправили письмо с подтверждением на адрес:</p>
+        <p><strong>{{ email }}</strong></p>
+        <div class="login-note">Перейдите по ссылке из письма, чтобы активировать аккаунт.</div>
+        <div class="login-note">Если письма нет — проверьте папку “Спам”.</div>
+        <div class="login-footer" style="margin-top: 16px;">
+          <a class="btn btn-primary py-2 px-4 text-white" href="{% url 'accounts:login' %}">Перейти к входу</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

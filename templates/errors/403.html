@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Недостаточно прав{% endblock %}
+{% block content %}
+<section class="section" style="margin-top: 40px;">
+  <h1>403 — недостаточно прав</h1>
+  <p>У вас нет прав для выполнения этого действия.</p>
+  <a class="btn btn-primary" href="{% url 'core:home' %}">На главную</a>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>
+  (function() {
+    var toast = document.querySelector('[data-toast-box]');
+    if (!toast) return;
+    toast.textContent = 'Недостаточно прав';
+    toast.classList.add('is-show');
+    setTimeout(function() { toast.classList.remove('is-show'); }, 2000);
+  })();
+</script>
+{% endblock %}

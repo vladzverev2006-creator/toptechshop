@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}FAQ — TopTechShop{% endblock %}
+
+{% block content %}
+<div class="site-section" id="section-faq">
+  <div class="container">
+    <h2 class="text-primary mb-4">Частые вопросы</h2>
+    <div class="p-4 bg-white" data-accordion>
+      <div data-accordion-item>
+        <button class="btn btn-link" type="button">Как скачать товар?</button>
+        <div class="accordion-body">После оплаты в личном кабинете.</div>
+      </div>
+      <div data-accordion-item>
+        <button class="btn btn-link" type="button">Есть ли возврат?</button>
+        <div class="accordion-body">По правилам лицензии и поддержке автора.</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

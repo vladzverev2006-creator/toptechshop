@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Профиль — TopTechShop{% endblock %}
+
+{% block content %}
+<div class="site-section" id="section-profile">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="p-4 bg-white ts-card">
+          <h3 class="text-primary">Профиль</h3>
+          <p>Имя: {{ request.user.username }}</p>
+          <p>Email: {{ request.user.email }}</p>
+          {% if profile.avatar %}
+            <img src="{{ profile.avatar.url }}" alt="{{ request.user.username }}" class="img-fluid rounded">
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="p-4 bg-white ts-card">
+          <h3 class="text-primary">Редактирование</h3>
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary py-2 px-4 text-white" type="submit">Сохранить</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

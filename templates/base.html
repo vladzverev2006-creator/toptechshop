@@ -1,0 +1,133 @@
+{% load static %}
+<!doctype html>
+<html lang="ru" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,900">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900">
+    <link rel="stylesheet" href="{% static 'logis/fonts/icomoon/style.css' %}">
+    <link rel="stylesheet" href="{% static 'logis/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'logis/css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'logis/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'logis/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'logis/css/jquery.fancybox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'logis/css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'logis/fonts/flaticon/font/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'logis/css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'logis/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'logis/css/custom.css' %}?v=20260222n">
+    <link rel="icon" href="{% static 'logis/images/favicon.png' %}" type="image/png">
+    {% block styles %}{% endblock %}
+    <title>{% block title %}TopTechShop{% endblock %}</title>
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="200">
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner" id="site-navbar">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-6 col-xl-2">
+            <h1 class="mb-0 site-logo"><a href="{% url 'core:home' %}" class="text-white h2 mb-0">TopTechShop</a></h1>
+          </div>
+          <div class="col-12 col-md-10 d-none d-xl-block">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+              <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+                <li><a href="{% url 'core:home' %}#section-home" class="nav-link {% if request.resolver_match and request.resolver_match.namespace == 'core' %}active{% endif %}">Главная</a></li>
+                <li class="has-children">
+                  <a href="{% url 'core:home' %}#section-services" class="nav-link">Категории</a>
+                  <ul class="dropdown">
+                    <li><a href="{% url 'core:home' %}#section-about">О проекте</a></li>
+                    <li><a href="{% url 'core:home' %}#section-how-it-works">Как работает</a></li>
+                  </ul>
+                </li>
+                <li><a href="{% url 'catalog:index' %}" class="nav-link {% if request.resolver_match and request.resolver_match.namespace == 'catalog' %}active{% endif %}">Каталог</a></li>
+                <li><a href="{% url 'products:index' %}" class="nav-link {% if request.resolver_match and request.resolver_match.namespace == 'products' %}active{% endif %}">Товары</a></li>
+                <li><a href="{% url 'reviews:index' %}" class="nav-link {% if request.resolver_match and request.resolver_match.namespace == 'reviews' %}active{% endif %}">Отзывы</a></li>
+                <li><a href="{% url 'pages:contact' %}" class="nav-link {% if request.resolver_match and request.resolver_match.namespace == 'pages' %}active{% endif %}">Контакты</a></li>
+                {% if request.user.is_authenticated %}
+                  <li><a href="{% url 'accounts:profile' %}" class="nav-link">Профиль</a></li>
+                  <li><a href="{% url 'accounts:logout' %}" class="nav-link">Выход</a></li>
+                {% else %}
+                  <li><a href="{% url 'accounts:login' %}" class="nav-link">Вход</a></li>
+                  <li><a href="{% url 'accounts:register' %}" class="nav-link">Регистрация</a></li>
+                {% endif %}
+              </ul>
+            </nav>
+          </div>
+          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;">
+            <a href="#" class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      {% if messages %}
+        <div class="container">
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <span class="footer-eyebrow">TopTechShop</span>
+            <h3 class="footer-title">Цифровой рынок, где всё создано для скорости</h3>
+            <p>Шаблоны, UI‑киты, плагины и пресеты — с акцентом на чистый код и быструю интеграцию.</p>
+            <div class="footer-pill">TopTechShop • 2026</div>
+          </div>
+          <div class="footer-col">
+            <h4>Навигация</h4>
+            <ul>
+              <li><a href="{% url 'core:home' %}#section-home">Главная</a></li>
+              <li><a href="{% url 'catalog:index' %}">Каталог</a></li>
+              <li><a href="{% url 'products:index' %}">Товары</a></li>
+              <li><a href="{% url 'pages:contact' %}">Контакты</a></li>
+            </ul>
+          </div>
+          <div class="footer-col footer-domain">
+            <h4>Домен</h4>
+            <div class="footer-domain-card">
+              <span>toptechshop.isgood.host</span>
+            </div>
+            <div class="footer-mini">Свежие коллекции каждую неделю</div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 TopTechShop</span>
+          <span class="footer-sep">•</span>
+          <span>Все права защищены</span>
+        </div>
+      </div>
+    </footer>
+    <div data-toast-box>Готово</div>
+
+    <script src="{% static 'logis/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'logis/js/jquery-migrate-3.0.1.min.js' %}"></script>
+    <script src="{% static 'logis/js/jquery-ui.js' %}"></script>
+    <script src="{% static 'logis/js/popper.min.js' %}"></script>
+    <script src="{% static 'logis/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'logis/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'logis/js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'logis/js/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'logis/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'logis/js/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'logis/js/aos.js' %}"></script>
+    <script src="{% static 'logis/js/main.js' %}?v=20260222c"></script>
+    <script src="{% static 'logis/js/custom.js' %}?v=20260222g"></script>
+    {% block scripts %}{% endblock %}
+  </body>
+</html>

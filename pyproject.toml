@@ -1,0 +1,7 @@
+[tool.black]
+line-length = 88
+
+autopep8 = false
+
+[tool.isort]
+profile = "black"

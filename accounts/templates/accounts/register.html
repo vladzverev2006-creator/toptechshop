@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block title %}Регистрация — TopTechShop{% endblock %}
+
+{% block styles %}
+<style>
+  #section-register {
+    padding: 64px 0;
+  }
+  .reg-shell {
+    display: flex;
+    justify-content: center;
+  }
+  .reg-panel {
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 32px;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+  }
+  .reg-panel h3 {
+    font-size: 28px;
+    margin-bottom: 6px;
+  }
+  .reg-panel p {
+    color: #64748b;
+    margin-bottom: 18px;
+  }
+  .reg-form {
+    display: grid;
+    gap: 14px;
+  }
+  .reg-field {
+    display: grid;
+    gap: 6px;
+  }
+  .reg-field label {
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #64748b;
+  }
+  .reg-form input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .reg-form input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    background: #ffffff;
+  }
+  .reg-errors {
+    color: #dc2626;
+    font-size: 12px;
+  }
+  .reg-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .reg-link {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .reg-note {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+  @media (max-width: 992px) {
+    .reg-shell {
+      display: block;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="site-section" id="section-register">
+  <div class="container">
+    <div class="reg-shell">
+      <div class="reg-panel" style="margin-top: 40px;">
+        <h3>Регистрация</h3>
+        <p>Заполни данные и создай аккаунт за минуту.</p>
+        <form method="post" class="reg-form">
+          {% csrf_token %}
+          {% if form.non_field_errors %}
+            <div class="reg-errors">{{ form.non_field_errors }}</div>
+          {% endif %}
+          <div class="reg-field">
+            <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
+            {{ form.username }}
+            <div class="reg-errors">{{ form.username.errors }}</div>
+          </div>
+          <div class="reg-field">
+            <label for="{{ form.email.id_for_label }}">Email</label>
+            {{ form.email }}
+            <div class="reg-errors">{{ form.email.errors }}</div>
+          </div>
+          <div class="reg-field">
+            <label for="{{ form.password1.id_for_label }}">Пароль</label>
+            {{ form.password1 }}
+            <div class="reg-errors">{{ form.password1.errors }}</div>
+          </div>
+          <div class="reg-field">
+            <label for="{{ form.password2.id_for_label }}">Повтор пароля</label>
+            {{ form.password2 }}
+            <div class="reg-errors">{{ form.password2.errors }}</div>
+          </div>
+          <div class="reg-footer">
+            <button class="btn btn-primary py-2 px-4 text-white" type="submit">Создать аккаунт</button>
+            <a class="reg-link" href="{% url 'accounts:login' %}">Уже есть аккаунт?</a>
+          </div>
+          <div class="reg-note">Регистрируясь, вы принимаете условия использования и политику конфиденциальности.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

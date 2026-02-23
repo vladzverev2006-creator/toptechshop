@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Страница не найдена{% endblock %}
+{% block content %}
+<div class="site-section" id="section-404">
+  <div class="container">
+    <div class="login-shell">
+      <div class="login-panel" style="margin-top: 40px;">
+        <h3>404 — страница не найдена</h3>
+        <p>Такой страницы нет. Проверьте адрес или вернитесь на главную.</p>
+        <div class="login-footer" style="margin-top: 16px;">
+          <a class="btn btn-primary py-2 px-4 text-white" href="{% url 'core:home' %}">На главную</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

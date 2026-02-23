@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Каталог — TopTechShop{% endblock %}
+
+{% block content %}
+<div class="site-section" id="section-catalog">
+  <div class="container">
+    <div class="row justify-content-between mb-4" style="margin-top: 40px;">
+      <div class="col-md-6">
+        <h2 class="text-primary">Каталог товаров</h2>
+      </div>
+      <div class="col-md-6 text-right">
+        <form method="get">
+          <input class="form-control" name="q" value="{{ query }}" placeholder="Поиск по товарам" data-live-search>
+        </form>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <select class="form-control" onchange="location = '?category=' + this.value;">
+          <option value="">Все категории</option>
+          {% for category in categories %}
+            <option value="{{ category.slug }}">{{ category.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select class="form-control" onchange="location = '?order=' + this.value;">
+          <option value="new">Сначала новые</option>
+          <option value="price_asc">Цена по возрастанию</option>
+          <option value="price_desc">Цена по убыванию</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      {% for product in page_obj %}
+      <div class="col-md-4 mb-4" data-search-item>
+        {% include 'components/product_card.html' with product=product %}
+      </div>
+      {% empty %}
+      <div class="col-12">
+        <p>Нет товаров по вашему запросу.</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if page_obj.has_other_pages %}
+    <div class="pagination">
+      {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}&q={{ query }}">Назад</a>
+      {% endif %}
+      <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+      {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}&q={{ query }}">Вперёд</a>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Удалить категорию — TopTechShop{% endblock %}
+
+{% block content %}
+<div class="site-section">
+  <div class="container">
+    <div class="col-md-6 mx-auto">
+      <div class="p-5 bg-white">
+        <h2 class="text-primary mb-4">Удалить {{ category.name }}?</h2>
+        <form method="post">
+          {% csrf_token %}
+          <button class="btn btn-danger" type="submit">Удалить</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

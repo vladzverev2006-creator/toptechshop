@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %}Вход — TopTechShop{% endblock %}
+
+{% block styles %}
+<style>
+  #section-login {
+    padding: 64px 0;
+  }
+  .login-shell {
+    display: flex;
+    justify-content: center;
+  }
+  .login-panel {
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 32px;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+    width: min(520px, 100%);
+  }
+  .login-panel h3 {
+    font-size: 28px;
+    margin-bottom: 6px;
+  }
+  .login-panel p {
+    color: #64748b;
+    margin-bottom: 18px;
+  }
+  .login-form {
+    display: grid;
+    gap: 14px;
+  }
+  .login-field {
+    display: grid;
+    gap: 6px;
+  }
+  .login-field label {
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #64748b;
+  }
+  .login-form input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .login-form input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    background: #ffffff;
+  }
+  .login-errors {
+    color: #dc2626;
+    font-size: 12px;
+  }
+  .login-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .login-link {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .login-note {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="site-section" id="section-login">
+  <div class="container">
+    <div class="login-shell">
+      <div class="login-panel" style="margin-top: 40px;">
+        <h3>Вход</h3>
+        <p>Рады видеть вас снова. Введите данные для входа.</p>
+        <form method="post" class="login-form">
+          {% csrf_token %}
+          {% if form.non_field_errors %}
+            <div class="login-errors">{{ form.non_field_errors }}</div>
+          {% endif %}
+          <div class="login-field">
+            <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
+            {{ form.username }}
+            <div class="login-errors">{{ form.username.errors }}</div>
+          </div>
+          <div class="login-field">
+            <label for="{{ form.password.id_for_label }}">Пароль</label>
+            {{ form.password }}
+            <div class="login-errors">{{ form.password.errors }}</div>
+          </div>
+          <div class="login-footer">
+            <button class="btn btn-primary py-2 px-4 text-white" type="submit">Войти</button>
+            <a class="login-link" href="{% url 'accounts:password_reset' %}">Забыли пароль?</a>
+          </div>
+          <div class="login-note">Нет аккаунта? <a class="login-link" href="{% url 'accounts:register' %}">Создать</a></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

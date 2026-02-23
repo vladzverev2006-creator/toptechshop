@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static formatting %}
+
+{% block title %}Товары — TopTechShop{% endblock %}
+
+{% block content %}
+<div class="site-section" id="section-products">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4" style="margin-top: 40px;">
+      <h2 class="text-primary">Товары</h2>
+      <a class="btn btn-primary py-2 px-4 text-white" href="{% url 'products:create' %}">Создать</a>
+    </div>
+    <div class="row">
+      {% for product in products %}
+      <div class="col-md-4 mb-4">
+        {% include 'components/product_card.html' with product=product %}
+      </div>
+      {% empty %}
+      <div class="col-12">
+        <p>Пока товаров нет.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

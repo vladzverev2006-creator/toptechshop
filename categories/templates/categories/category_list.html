@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Категории — TopTechShop{% endblock %}
+
+{% block content %}
+<div class="site-section" id="section-categories">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="text-primary">Категории</h2>
+      <a class="btn btn-primary py-2 px-4 text-white" href="{% url 'categories:create' %}">Создать</a>
+    </div>
+    <div class="row">
+      {% for category in categories %}
+      <div class="col-md-4 mb-4">
+        <div class="p-4 bg-white ts-card">
+          <h4>{{ category.name }}</h4>
+          <div>
+            <a href="{% url 'categories:edit' slug=category.slug %}">Редактировать</a> |
+            <a href="{% url 'categories:delete' slug=category.slug %}">Удалить</a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-12">Категорий пока нет.</div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

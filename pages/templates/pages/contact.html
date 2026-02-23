@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %}Контакты — TopTechShop{% endblock %}
+
+{% block styles %}
+<style>
+  #section-contact-page {
+    padding: 64px 0;
+  }
+  .contact-shell {
+    display: flex;
+    justify-content: center;
+  }
+  .contact-panel {
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 32px;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+    width: min(760px, 100%);
+  }
+  .contact-panel h3 {
+    font-size: 28px;
+    margin-bottom: 6px;
+  }
+  .contact-panel p {
+    color: #64748b;
+    margin-bottom: 18px;
+  }
+  .contact-form {
+    display: grid;
+    gap: 14px;
+  }
+  .contact-field {
+    display: grid;
+    gap: 6px;
+  }
+  .contact-field label {
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #64748b;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .contact-form textarea {
+    min-height: 140px;
+    resize: vertical;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    background: #ffffff;
+  }
+  .contact-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .contact-note {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="site-section" id="section-contact-page">
+  <div class="container">
+    <div class="contact-shell">
+      <div class="contact-panel" style="margin-top: 40px;">
+        <h3>Контакты</h3>
+        <p>Мы ответим в течение 24 часов. Можно написать напрямую на почту.</p>
+        <form action="#" class="contact-form">
+          <div class="contact-field">
+            <label for="fname">Имя</label>
+            <input type="text" id="fname" class="form-control" placeholder="Ваше имя">
+          </div>
+          <div class="contact-field">
+            <label for="lname">Фамилия</label>
+            <input type="text" id="lname" class="form-control" placeholder="Ваша фамилия">
+          </div>
+          <div class="contact-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" placeholder="you@email.com">
+          </div>
+          <div class="contact-field">
+            <label for="subject">Тема</label>
+            <input type="text" id="subject" class="form-control" placeholder="Тема сообщения">
+          </div>
+          <div class="contact-field">
+            <label for="message">Сообщение</label>
+            <textarea id="message" class="form-control" placeholder="Напишите сообщение..."></textarea>
+          </div>
+          <div class="contact-footer">
+            <input type="submit" value="Отправить" class="btn btn-primary py-2 px-4 text-black">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

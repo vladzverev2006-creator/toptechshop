@@ -1,0 +1,6 @@
+{% load static formatting %}
+<div class="h-entry">
+  <img src="{% if product.cover %}{{ product.cover.url }}{% else %}{% static 'logis/images/img_1.jpg' %}{% endif %}" alt="{{ product.title }}" class="img-fluid">
+  <h2 class="font-size-regular"><a href="{% url 'products:detail' slug=product.slug %}">{{ product.title }}</a></h2>
+  <p>{{ product.price|format_price }}</p>
+</div>

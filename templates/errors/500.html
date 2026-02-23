@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Ошибка сервера{% endblock %}
+{% block content %}
+<div class="site-section" id="section-500">
+  <div class="container">
+    <div class="login-shell">
+      <div class="login-panel" style="margin-top: 40px;">
+        <h3>500 — ошибка сервера</h3>
+        <p>Что-то пошло не так. Мы уже разбираемся. Попробуйте обновить страницу позже.</p>
+        <div class="login-footer" style="margin-top: 16px;">
+          <a class="btn btn-primary py-2 px-4 text-white" href="{% url 'core:home' %}">На главную</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

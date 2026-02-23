@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}API — TopTechShop{% endblock %}
+
+{% block content %}
+<div class="site-section" id="section-api">
+  <div class="container">
+    <h2 class="text-primary mb-4">API документация</h2>
+    <div class="p-4 bg-white">
+      <p><strong>GET</strong> /api/products/ — список товаров (limit, offset, search, category, min_price, max_price, order)</p>
+      <p><strong>GET</strong> /api/products/&lt;id&gt;/ — детали товара</p>
+      <p><strong>POST</strong> /api/products/ — создать товар (требуется авторизация)</p>
+      <p><strong>PUT</strong> /api/products/&lt;id&gt;/ — обновить (требуется авторизация)</p>
+      <p><strong>DELETE</strong> /api/products/&lt;id&gt;/ — удалить (требуется авторизация)</p>
+      <p><strong>GET</strong> /api/categories/ — список категорий</p>
+      <p><strong>GET</strong> /api/reviews/ — отзывы</p>
+      <p><strong>GET</strong> /api/orders/ — мои заказы (требуется авторизация)</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
