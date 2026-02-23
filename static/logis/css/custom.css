@@ -426,23 +426,8 @@ input:focus, textarea:focus, select:focus {
     top: 50%;
     transform: translateY(-50%);
   }
-}
-
-@media (max-width: 1199px) {
-  .site-navbar .site-menu-toggle {
-    right: -24px;
-  }
-}
-
-@media (max-width: 1199px) {
-  .site-navbar .site-menu-toggle {
-    right: -24px;
-  }
-}
-
-@media (max-width: 1199px) {
   .site-menu-toggle .icon-menu {
-    position: relative;
-    right: -40px;
+    display: block;
+    transform: translateX(40px);
   }
 }
